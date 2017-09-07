@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="skew_background.css">
+</head>
+
+<body onload="Eclipse()">
+    <div class="container">
+        <div id="sun"></div>
+        <div id="moon"></div>
+        <div id="rocket"> </div>
+        <section class="sec1"></section>
+        <section class="sec2"></section>
+        <div id="overlay"></div>
+        <!--<button onclick="Move()">SUN</button>-->
+    </div>
+    <script>
+        var sun = document.getElementById('sun');
+        var moon = document.getElementById('moon');
+        var pos = 0;
+
+        function sunSet() {
+            // var pos = 0; //start position/
+            var high = 100;
+            var descent = setInterval(down, 10.5);
+
+            function down() {
+                if (high == 650) {
+                    clearInterval(descent);
+                } else {
+                    high += 1;
+                    moon.style.top = high + "px";
+                    sun.style.top = high + "px";
+                    console.log(high);
+                    document.getElementById('overlay').style.opacity = "1";
+                }
+            }
+        }
+
+        function Eclipse() {
+
+            var pos = 0; //start position//
+            var id = setInterval(frame, 11);
+
+            function frame() {
+                document.getElementById('overlay').style.opacity = "0.65";
+                if (pos == 670) {
+                    clearInterval(id);
+                    sunSet();
+                } else {
+                    pos++;
+                    moon.style.right = pos + 'px';
+                    sun.style.left = pos + 'px';
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
